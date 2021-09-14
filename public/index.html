@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="/dist/vue.js"></script>
+    <div style="color: #fff" class="a1" id="app">
+        <ui>lalal
+            <li> hhhh{{name}}</li>
+            <li>{{name.arr[0]}}</li>
+        </ui>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    name: {
+                        arr: [
+                            { a: 0 }
+                        ]
+                    }
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
