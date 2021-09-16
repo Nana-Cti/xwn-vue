@@ -20,6 +20,7 @@ export function initMixin(Vue) {
     el = document.querySelector(el)
     const vm = this
     const options = vm.$options
+    vm.$options.$el = el
 
     // 如果有render 就直接使用render
     // 没有render 看有没有template属性

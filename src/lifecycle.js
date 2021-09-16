@@ -1,8 +1,17 @@
 import Watcher from "./observe/watcher";
+import { patch } from "./vdom/patch";
 
 export function lifycycleMixin(Vue) {
   Vue.prototype._update = function (vnode) {
-    console.log('_update')
+    // 将虚拟节点转成真实dom
+
+    const vm = this
+
+    // 首次渲染 需要用虚拟节点来更新真实的dom
+    vm.$el = patch(vm.$options.$el, vnode)
+
+    
+    
   }
   
 }
