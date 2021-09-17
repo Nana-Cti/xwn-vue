@@ -1,4 +1,5 @@
 import { arrayMethohs } from "./array"
+import Dep from "./dep"
 
 
 class Observe {
@@ -33,8 +34,13 @@ class Observe {
 
 export function defineReactive(data, key, value) {
   observe(value)
+  let dep = new Dep()
   Object.defineProperty(data, key, {
     get() {
+      if (Dep.target) {
+        dep.depend()
+      }
+      
       return value
     },
     set(newValue) {

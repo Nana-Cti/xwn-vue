@@ -1,3 +1,4 @@
+import { popTarget, pushTarget } from "./dep"
 
 let id = 0
 class Watcher {
@@ -7,7 +8,18 @@ class Watcher {
     this.cb = cb
     this.option = option
     this.id = id ++
+    
+    this.get()
+  }
+
+  get() {
+    pushTarget(this)
     this.fn()
+    popTarget(this)
+  }
+
+  addDep(dep) {
+    
   }
 }
 
