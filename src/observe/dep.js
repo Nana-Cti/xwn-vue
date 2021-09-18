@@ -5,10 +5,15 @@ class Dep {
   constructor() {
     this.id = id++
     this.subs = []
+    
   }
   depend() {
     // 让watcher记住dep
     Dep.target.addDep(this)
+  }
+
+  addSub(watcher) {
+    this.subs.push(watcher)
   }
 }
 
