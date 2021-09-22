@@ -10,8 +10,6 @@ export function lifycycleMixin(Vue) {
     // 首次渲染 需要用虚拟节点来更新真实的dom
     // 初始化渲染的时候 会创建一个新节点并且将老节点换掉
     vm.$options.$el = patch(vm.$options.$el, vnode)
-
-    
     
   }
   

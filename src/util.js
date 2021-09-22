@@ -29,3 +29,16 @@ export function nextTick(cb) {
     Promise.resolve().then(flushCallbacks)
   }
 }
+
+export const isObject = (val) => typeof val == 'object' && val !== null
+
+export function mergeOptions(parent, child) {
+  const options = {}
+
+  for (const key in parent) {
+    if (Object.hasOwnProperty.call(parent, key)) {
+      mergeFieId(key)
+    }
+  }
+  return options
+}

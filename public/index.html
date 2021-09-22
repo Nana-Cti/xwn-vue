@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width='device-width', initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- 
 
@@ -16,29 +18,34 @@
     <script src="/dist/vue.js"></script>
     <div style="color: red" class="a1" id="app">
         <ui>lalal
-            <li> hhhh{{name.arr}}</li>
-            <li>{{name.arr[0].a}}</li>
+            <li> hhhh{{name}}</li>
         </ui>
     </div>
     <script>
+        Vue.mixin({
+            beforeCreate() {// 组件创建之前
+                console.log('beforeCreate2')
+            },
+            created() {// 数据已经被劫持
+                console.log('created2')
+            }
+        })
         const vm = new Vue({
             el: '#app',
+            beforeCreate() {// 组件创建之前
+                console.log('beforeCreate1')
+            },
+            created() {// 数据已经被劫持
+                console.log('created1')
+            },
             data() {
                 return {
-                    name: {
-                        arr: [
-                            { a: 0 }
-                        ]
-                    }
+                    name: 'ee'
                 }
             }
         })
-
-        setTimeout(() => {
-            vm.name.arr[1] = 88
-            vm.name.arr.push(22)
-        }, 1000);
     </script>
-    
+
 </body>
+
 </html>

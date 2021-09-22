@@ -34,6 +34,16 @@ class Observe {
   }
 }
 
+function dependArray(value) {
+  for (let index = 0; index < value.length; index++) {
+    const current = value[index];
+    current.__ob__ && current.__ob__.dep.depend()
+    if( Array.isArray(current)){
+      dependArray(current)
+    }
+  }
+}
+
 export function defineReactive(data, key, value) {
   let childOb = observe(value)
   // 给属性的dep
@@ -45,6 +55,10 @@ export function defineReactive(data, key, value) {
 
         if (childOb) {
           childOb.dep.depend()
+
+          if( Array.isArray(value)){
+            dependArray(value)
+          }
         }
       }
       
