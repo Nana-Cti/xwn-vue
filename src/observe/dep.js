@@ -8,12 +8,19 @@ class Dep {
     
   }
   depend() {
-    // 让watcher记住dep
+    // 让watcher记住dep 有去重
     Dep.target.addDep(this)
   }
 
   addSub(watcher) {
+    // 让dep记住watcher 有去重
     this.subs.push(watcher)
+  }
+
+  notify() {
+    this.subs.forEach((watcher) => {
+      watcher.update()
+    })
   }
 }
 

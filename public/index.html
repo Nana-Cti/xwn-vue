@@ -16,7 +16,7 @@
     <script src="/dist/vue.js"></script>
     <div style="color: red" class="a1" id="app">
         <ui>lalal
-            <li> hhhh{{name}}</li>
+            <li> hhhh{{name.arr}}</li>
             <li>{{name.arr[0].a}}</li>
         </ui>
     </div>
@@ -34,8 +34,10 @@
             }
         })
 
-        vm.name.arr[0] = {a: 88}
-        vm._update(vm._render())
+        setTimeout(() => {
+            vm.name.arr[1] = 88
+            vm.name.arr.push(22)
+        }, 1000);
     </script>
     
 </body>

@@ -4,6 +4,8 @@ import Dep from "./dep"
 
 class Observe {
   constructor(value) {
+    // 给对象或数组加的dep
+    this.dep = new Dep()
     Object.defineProperty(value, '__ob__', {
       value: this,
       enumerable:false, // 不能枚举
@@ -33,12 +35,17 @@ class Observe {
 }
 
 export function defineReactive(data, key, value) {
-  observe(value)
+  let childOb = observe(value)
+  // 给属性的dep
   let dep = new Dep()
   Object.defineProperty(data, key, {
     get() {
       if (Dep.target) {
         dep.depend()
+
+        if (childOb) {
+          childOb.dep.depend()
+        }
       }
       
       return value
@@ -47,6 +54,7 @@ export function defineReactive(data, key, value) {
       if (newValue === value) return
       observe(newValue)
       value = newValue
+      dep.notify() // 通知dep执行
     }
   })
 }

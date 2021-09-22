@@ -32,6 +32,8 @@ methodes.forEach(methode => {
       this.__ob__.observeArray(inserted)
     }
 
+    this.__ob__.dep.notify()
+
     let result = oldArrayPrototype[methode].call(this, ...args)
     return result
   }
