@@ -17,9 +17,9 @@
      -->
     <script src="/dist/vue.js"></script>
     <div style="color: red" class="a1" id="app">
-        <ui>lalal
-            <li> hhhh{{name}}</li>
-        </ui>
+        <my-button></my-button>
+        <my-button></my-button>
+        <my-button></my-button>
     </div>
     <script>
         Vue.mixin({
@@ -30,8 +30,16 @@
                 console.log('created2')
             }
         })
+        Vue.component('my-button', {
+            template: '<button>按钮</button>'
+        })
         const vm = new Vue({
             el: '#app',
+            components: {
+                'my-button': {
+                    template: '<button>这个按钮</button>'
+                }
+            },
             beforeCreate() {// 组件创建之前
                 console.log('beforeCreate1')
             },
